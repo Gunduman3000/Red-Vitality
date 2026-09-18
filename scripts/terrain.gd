@@ -24,6 +24,8 @@ const size := 768.0
 	set(new_paths):
 		poi_asset_paths = new_paths
 		update_mesh()
+		
+	
 
 const MIN_DISTANCE := 200.0
 const MAX_ATTEMPTS := 50

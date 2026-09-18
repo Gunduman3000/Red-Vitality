@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://egpru16uvbme"]
+
+[ext_resource type="Shader" uid="uid://djdvvewfn86x2" path="res://Assets/GrassShader.tres" id="1_tuser"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_txcs8"]
+frequency = 0.0131
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cpywb"]
+noise = SubResource("FastNoiseLite_txcs8")
+seamless = true
+seamless_blend_skirt = 0.3
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_tuser")
+shader_parameter/WindNoise = SubResource("NoiseTexture2D_cpywb")
+shader_parameter/BaseColor = Color(0.2627451, 0.7176471, 0.09411765, 1)
+shader_parameter/WindColor = Color(0.25882354, 0.47843137, 0.19607843, 1)
