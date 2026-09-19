@@ -1,15 +1,86 @@
 [gd_scene format=3 uid="uid://12sa4kqnqswf"]
 
 [ext_resource type="Texture2D" uid="uid://b1a02noxrdy66" path="res://Assets/tomato.png" id="1_u65e6"]
+[ext_resource type="Script" uid="uid://6maqrewwgsvu" path="res://scripts/game_manager.gd" id="1_y0i8d"]
 
-[sub_resource type="GDScript" id="GDScript_6cjvj"]
-script/source = "extends Node
-"
+[sub_resource type="Theme" id="Theme_y0i8d"]
+Button/colors/font_color = Color(0.9999967, 0.21459225, 0.27606782, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y0i8d"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.20392157)
+border_width_left = 4
+border_width_top = 2
+border_width_right = 4
+border_width_bottom = 2
+border_color = Color(0.8901416, 0.4263066, 0.4192135, 1)
+border_blend = true
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7n0gs"]
+bg_color = Color(1, 0.6, 0.6, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sd3pc"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yryq3"]
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m5nax"]
+bg_color = Color(0.42411035, 0.6720754, 0.41831586, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg76c"]
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77ke0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3md3m"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+corner_detail = 20
 
 [node name="Game_Manager" type="Node" unique_id=1483179377]
-script = SubResource("GDScript_6cjvj")
+script = ExtResource("1_y0i8d")
 
-[node name="Control" type="Control" parent="." unique_id=1716583708]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=450394257]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1716583708]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,45 +88,65 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Control" unique_id=1721335435]
+[node name="Label" type="Label" parent="CanvasLayer/Control" unique_id=1721335435]
 layout_mode = 0
-offset_left = 121.0
-offset_top = 25.0
-offset_right = 160.9999
-offset_bottom = 109.0
+offset_left = 140.0
+offset_top = 58.0
+offset_right = 179.9999
+offset_bottom = 142.0
 theme_override_font_sizes/font_size = 61
 text = "0"
 
-[node name="Tomato" type="Sprite2D" parent="Control/Label" unique_id=215688111]
+[node name="Tomato" type="Sprite2D" parent="CanvasLayer/Control/Label" unique_id=215688111]
 position = Vector2(-68.9375, 43.632477)
 scale = Vector2(0.2124718, 0.1727619)
 texture = ExtResource("1_u65e6")
 
-[node name="PAUSEMENU" type="Control" parent="Control" unique_id=1138092155]
-visible = false
+[node name="Resume" type="Button" parent="CanvasLayer/Control" unique_id=1021615042]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Resume" type="Button" parent="Control/PAUSEMENU" unique_id=1021615042]
-layout_mode = 0
-offset_left = 455.0
-offset_top = 230.0
-offset_right = 659.0
-offset_bottom = 261.0
+anchors_preset = -1
+anchor_left = -0.012845092
+anchor_top = 0.30092594
+anchor_right = -0.012845092
+anchor_bottom = 0.30092594
+offset_left = 454.99997
+offset_top = 49.999985
+offset_right = 658.99994
+offset_bottom = 80.999985
 scale = Vector2(1.2056941, 0.8547275)
+theme = SubResource("Theme_y0i8d")
+theme_override_styles/normal = SubResource("StyleBoxFlat_y0i8d")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_7n0gs")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_sd3pc")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_yryq3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_m5nax")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_bg76c")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_77ke0")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_3md3m")
 text = "RESUME"
 metadata/_edit_use_anchors_ = true
 
-[node name="Main_Menu" type="Button" parent="Control/PAUSEMENU" unique_id=1486494252]
-layout_mode = 0
-offset_left = 455.0
-offset_top = 426.0
-offset_right = 659.0
-offset_bottom = 457.0
+[node name="Main_Menu" type="Button" parent="CanvasLayer/Control" unique_id=647609478]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.005900648
+anchor_top = 0.5771605
+anchor_right = -0.005900648
+anchor_bottom = 0.5771605
+offset_left = 454.99997
+offset_top = 49.999985
+offset_right = 658.99994
+offset_bottom = 80.999985
 scale = Vector2(1.2056941, 0.8547275)
-text = "Back To Main Menu"
+theme = SubResource("Theme_y0i8d")
+theme_override_styles/normal = SubResource("StyleBoxFlat_y0i8d")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_7n0gs")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_sd3pc")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_yryq3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_m5nax")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_bg76c")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_77ke0")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_3md3m")
+text = "Main Menu
+"
 metadata/_edit_use_anchors_ = true

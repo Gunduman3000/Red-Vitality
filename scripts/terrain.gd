@@ -83,6 +83,7 @@ func update_mesh() -> void:
 	update_collision(array_mesh)
 	spawn_pois()
 	generate_grass() 
+	bake_navigation_mesh()
 
 func generate_grass() -> void:
 	if not grass_multimesh_instance:
@@ -241,7 +242,27 @@ func spawn_pois() -> void:
 		var normal := get_normal(random_x, random_z)
 		if normal.length_squared() > 0.001 and not normal.is_equal_approx(Vector3.UP):
 			var right := Vector3.RIGHT if abs(normal.dot(Vector3.RIGHT)) < 0.9 else Vector3.FORWARD
-			var forward := normal.cross(right).normalized()
+			var forward := norm_cross_helper(normal)
 			var up_right := forward.cross(normal).normalized()
 			poi.transform.basis = Basis(up_right, normal, forward)
-		print("sagil highkey gay (happy)")
+
+func norm_cross_helper(normal: Vector3) -> Vector3:
+	var right := Vector3.RIGHT if abs(normal.dot(Vector3.RIGHT)) < 0.9 else Vector3.FORWARD
+	return normal.cross(right).normalized()
+
+func bake_navigation_mesh() -> void:
+	var nav_region: NavigationRegion3D = get_node_or_null("NAVMESH")
+	if not nav_region:
+		nav_region = NavigationRegion3D.new()
+		nav_region.name = "NAVMESH"
+		add_child(nav_region)
+		if Engine.is_editor_hint() and get_tree():
+			nav_region.owner = get_tree().edited_scene_root
+
+	if not nav_region.navigation_mesh:
+		var nav_mesh := NavigationMesh.new()
+		nav_mesh.geometry_parsed_geometry_type = NavigationMesh.PARSED_GEOMETRY_STATIC_COLLIDERS
+		nav_mesh.agent_max_slope = 90.0
+		nav_region.navigation_mesh = nav_mesh
+
+	nav_region.bake_navigation_mesh()
