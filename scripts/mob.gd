@@ -3,6 +3,7 @@ class_name mob
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
  
 const SPEED = 5
+signal killed
 
 func _ready() -> void:
 	target_position(Vector3(0,0,-10))
@@ -17,6 +18,12 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 func target_position(target_p):
 	navigation_agent_3d.target_position = target_p
+	
+	
+	
+
+func die() -> void:
+	killed.emit()
 
 	
 	

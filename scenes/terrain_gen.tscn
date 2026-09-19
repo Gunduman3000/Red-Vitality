@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bjquxkc2h0c4d" path="res://Assets/Test_POI.tscn" id="4_hcc4l"]
 [ext_resource type="PackedScene" uid="uid://dibcob5mpje7q" path="res://Assets/grass.glb" id="4_je6b6"]
 [ext_resource type="Material" uid="uid://egpru16uvbme" path="res://Assets/Stylized3DGrass.tres" id="5_ur4lo"]
+[ext_resource type="PackedScene" uid="uid://12sa4kqnqswf" path="res://Assets/game_manager.tscn" id="6_ur4lo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_55yu6"]
 
@@ -90,29 +91,30 @@ grass_multimesh_instance = NodePath("../MultiMeshInstance3D")
 
 [node name="POIs" type="Node3D" parent="MeshInstance3D" unique_id=716139401]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="MeshInstance3D/POIs" unique_id=1418127807 instance=ExtResource("4_hcc4l")]
+[node name="CSGBox3D" parent="MeshInstance3D/POIs" unique_id=1418127807 instance=ExtResource("4_hcc4l")]
 transform = Transform3D(0.9957774, -0.09180091, 0, 0.09118947, 0.98914486, -0.11522552, -0.010577809, -0.11473897, -0.99333936, -318.3688, 46.7366, -20.936005)
-size = Vector3(25, 25, 25)
 
-[node name="@CSGBox3D@47934" type="CSGBox3D" parent="MeshInstance3D/POIs" unique_id=2125829636 instance=ExtResource("4_hcc4l")]
+[node name="@CSGBox3D@47934" parent="MeshInstance3D/POIs" unique_id=2125829636 instance=ExtResource("4_hcc4l")]
 transform = Transform3D(0.99990386, -0.013864953, 0, 0.013864932, 0.9999025, 0.0017006374, 2.3579254e-05, 0.001700474, -0.99999857, 131.88477, -59.679096, 281.90454)
-size = Vector3(25, 25, 25)
 
-[node name="@CSGBox3D@47935" type="CSGBox3D" parent="MeshInstance3D/POIs" unique_id=549799155 instance=ExtResource("4_hcc4l")]
+[node name="@CSGBox3D@47935" parent="MeshInstance3D/POIs" unique_id=549799155 instance=ExtResource("4_hcc4l")]
 transform = Transform3D(0.9998259, -0.018657919, 0, 0.018477004, 0.990131, -0.13892086, -0.0025919743, -0.13889666, -0.9903035, 127.107086, -23.778976, 73.850006)
-size = Vector3(25, 25, 25)
 
-[node name="@CSGBox3D@47936" type="CSGBox3D" parent="MeshInstance3D/POIs" unique_id=1859885880 instance=ExtResource("4_hcc4l")]
+[node name="@CSGBox3D@47936" parent="MeshInstance3D/POIs" unique_id=1859885880 instance=ExtResource("4_hcc4l")]
 transform = Transform3D(0.9996737, -0.02554348, 0, 0.025098737, 0.9822681, 0.1857937, 0.0047458177, 0.18573307, -0.98258877, 124.32062, 5.8513803, -305.39417)
-size = Vector3(25, 25, 25)
 
-[node name="@CSGBox3D@47937" type="CSGBox3D" parent="MeshInstance3D/POIs" unique_id=1732667604 instance=ExtResource("4_hcc4l")]
+[node name="@CSGBox3D@47937" parent="MeshInstance3D/POIs" unique_id=1732667604 instance=ExtResource("4_hcc4l")]
 transform = Transform3D(0.99021894, -0.13952222, 0, 0.13624355, 0.96694964, -0.21551387, -0.030068971, -0.21340592, -0.9765008, -163.15187, 38.883236, -158.37468)
-size = Vector3(25, 25, 25)
 
 [node name="TerrainStaticBody" type="StaticBody3D" parent="MeshInstance3D" unique_id=41856970]
 
 [node name="TerrainCollisionShape" type="CollisionShape3D" parent="MeshInstance3D/TerrainStaticBody" unique_id=338190625]
 shape = SubResource("ConcavePolygonShape3D_q7pq2")
+
+[node name="Game_Manager" parent="." unique_id=1483179377 instance=ExtResource("6_ur4lo")]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=355795313]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.420826, 0)
+current = true
 
 [editable path="grass"]
