@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://cvrn877on6er7"]
+
+[ext_resource type="Script" uid="uid://qna67kv20bx0" path="res://player.gd" id="1_0ywxr"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vgaqd"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_2oaku"]
+height = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0ywxr"]
+
+[node name="Player_Pot" type="Node3D" unique_id=1142346797]
+
+[node name="Player" type="CharacterBody3D" parent="." unique_id=1914888182]
+script = ExtResource("1_0ywxr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player" unique_id=770776944]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0.49894536, 0)
+mesh = SubResource("CylinderMesh_vgaqd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=244417997]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_2oaku")
+
+[node name="CameraPivot" type="Node3D" parent="Player" unique_id=1620300891]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Player/CameraPivot" unique_id=1937393074]
+transform = Transform3D(-1, -2.3537641e-08, -8.4194546e-08, -4.8797613e-08, 0.94936514, 0.3141747, 7.253644e-08, 0.3141747, -0.94936514, 0, 0, 0)
+shape = SubResource("SphereShape3D_0ywxr")
+spring_length = 8.0
+
+[node name="Camera" type="Camera3D" parent="Player/CameraPivot/SpringArm3D" unique_id=1957118627]
+transform = Transform3D(1, 0, 0, 0, 0.99318695, 0.116532065, 0, -0.116532065, 0.99318695, 0, -1.1920929e-07, 6.644559)
+cull_mask = 1048574
