@@ -1,5 +1,5 @@
 extends CharacterBody3D
-
+class_name mob
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
  
 const SPEED = 5
