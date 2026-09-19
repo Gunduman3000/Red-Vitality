@@ -25,6 +25,12 @@ const size := 768.0
 		poi_asset_paths = new_paths
 		update_mesh()
 
+@export_group("Grass Settings")
+@export var grass_multimesh_instance: MultiMeshInstance3D:
+	set(value):
+		grass_multimesh_instance = value
+		update_mesh()
+
 const MIN_DISTANCE := 200.0
 const MAX_ATTEMPTS := 50
 
@@ -73,6 +79,65 @@ func update_mesh() -> void:
 	
 	update_collision(array_mesh)
 	spawn_pois()
+	generate_grass() 
+
+func generate_grass() -> void:
+	if not grass_multimesh_instance or not grass_multimesh_instance.multimesh:
+		return
+		
+	var mm: MultiMesh = grass_multimesh_instance.multimesh
+	mm.transform_format = MultiMesh.TRANSFORM_3D
+	
+	var count: int = mm.instance_count
+	if count <= 0:
+		return
+
+	var half_size := size / 2.0
+	
+	
+	var write_buffer := PackedFloat32Array()
+	write_buffer.resize(count * 12)
+	
+	var buffer_idx := 0
+	for i in range(count):
+		var rx := randf_range(-half_size, half_size)
+		var rz := randf_range(-half_size, half_size)
+		var ry := get_height(rx, rz)
+		
+		var xform := Transform3D()
+		
+		var norm := get_normal(rx, rz)
+		var right := Vector3.RIGHT if abs(norm.dot(Vector3.RIGHT)) < 0.9 else Vector3.FORWARD
+		var forward := norm.cross(right).normalized()
+		var up_right := forward.cross(norm).normalized()
+		
+		xform.basis = Basis(up_right, norm, forward)
+		
+		xform.basis = xform.basis.rotated(norm, randf_range(0.0, TAU))
+		
+		var scale_factor := randf_range(0.75, 1.35)
+		xform.basis = xform.basis.scaled(Vector3(scale_factor, scale_factor, scale_factor))
+		
+		xform.origin = Vector3(rx, ry, rz)
+		
+		write_buffer[buffer_idx] = xform.basis.x.x
+		write_buffer[buffer_idx + 1] = xform.basis.x.y
+		write_buffer[buffer_idx + 2] = xform.basis.x.z
+		write_buffer[buffer_idx + 3] = xform.origin.x
+		
+		write_buffer[buffer_idx + 4] = xform.basis.y.x
+		write_buffer[buffer_idx + 5] = xform.basis.y.y
+		write_buffer[buffer_idx + 6] = xform.basis.y.z
+		write_buffer[buffer_idx + 7] = xform.origin.y
+		
+		write_buffer[buffer_idx + 8] = xform.basis.z.x
+		write_buffer[buffer_idx + 9] = xform.basis.z.y
+		write_buffer[buffer_idx + 10] = xform.basis.z.z
+		write_buffer[buffer_idx + 11] = xform.origin.z
+		
+		buffer_idx += 12
+		
+	mm.buffer = write_buffer
 
 func update_collision(array_mesh: ArrayMesh) -> void:
 	var static_body: StaticBody3D = get_node_or_null("TerrainStaticBody")
@@ -102,7 +167,6 @@ func spawn_pois() -> void:
 		if Engine.is_editor_hint() and get_tree():
 			pois_node.owner = get_tree().edited_scene_root
 
-	# Instantly free existing children so child count clears immediately
 	for child in pois_node.get_children():
 		child.free()
 
@@ -157,9 +221,6 @@ func spawn_pois() -> void:
 
 		poi.add_to_group("generated_poi")
 		pois_node.add_child(poi)
-
-		# DO NOT set poi.owner = get_tree().edited_scene_root
-		# Keeping owner unassigned prevents POIs from permanently saving into the .tscn file
 
 		var y := get_height(random_x, random_z)
 		poi.position = Vector3(random_x, y, random_z)
