@@ -24,8 +24,6 @@ const size := 768.0
 	set(new_paths):
 		poi_asset_paths = new_paths
 		update_mesh()
-		
-	
 
 const MIN_DISTANCE := 200.0
 const MAX_ATTEMPTS := 50
@@ -74,14 +72,13 @@ func update_mesh() -> void:
 	mesh = array_mesh
 	
 	update_collision(array_mesh)
-	
 	spawn_pois()
 
 func update_collision(array_mesh: ArrayMesh) -> void:
-	var static_body: StaticBody3D = get_node_or_null("TerrainStaticBody2")
+	var static_body: StaticBody3D = get_node_or_null("TerrainStaticBody")
 	if not static_body:
 		static_body = StaticBody3D.new()
-		static_body.name = "TerrainStaticBody2"
+		static_body.name = "TerrainStaticBody"
 		add_child(static_body)
 		if Engine.is_editor_hint() and get_tree():
 			static_body.owner = get_tree().edited_scene_root
@@ -97,17 +94,17 @@ func update_collision(array_mesh: ArrayMesh) -> void:
 	collision_shape.shape = array_mesh.create_trimesh_shape()
 
 func spawn_pois() -> void:
-	var pois_node := get_node_or_null("POIs2")
+	var pois_node := get_node_or_null("POIs")
 	if not pois_node:
 		pois_node = Node3D.new()
-		pois_node.name = "POIs2"
+		pois_node.name = "POIs"
 		add_child(pois_node)
 		if Engine.is_editor_hint() and get_tree():
 			pois_node.owner = get_tree().edited_scene_root
 
+	# Instantly free existing children so child count clears immediately
 	for child in pois_node.get_children():
-		if child.is_in_group("generated_poi"):
-			child.queue_free()
+		child.free()
 
 	if poi_asset_paths.is_empty():
 		return
@@ -161,8 +158,8 @@ func spawn_pois() -> void:
 		poi.add_to_group("generated_poi")
 		pois_node.add_child(poi)
 
-		if Engine.is_editor_hint() and get_tree():
-			poi.owner = get_tree().edited_scene_root
+		# DO NOT set poi.owner = get_tree().edited_scene_root
+		# Keeping owner unassigned prevents POIs from permanently saving into the .tscn file
 
 		var y := get_height(random_x, random_z)
 		poi.position = Vector3(random_x, y, random_z)
