@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cvrn877on6er7"]
 
-[ext_resource type="Script" uid="uid://qna67kv20bx0" path="res://player.gd" id="1_0ywxr"]
+[ext_resource type="Script" uid="uid://qna67kv20bx0" path="res://scripts/player.gd" id="1_denhm"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_vgaqd"]
 
@@ -12,7 +12,7 @@ height = 1.0
 [node name="Player_Pot" type="Node3D" unique_id=1142346797]
 
 [node name="Player" type="CharacterBody3D" parent="." unique_id=1914888182]
-script = ExtResource("1_0ywxr")
+script = ExtResource("1_denhm")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player" unique_id=770776944]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0.49894536, 0)
@@ -32,5 +32,4 @@ shape = SubResource("SphereShape3D_0ywxr")
 spring_length = 8.0
 
 [node name="Camera" type="Camera3D" parent="Player/CameraPivot/SpringArm3D" unique_id=1957118627]
-transform = Transform3D(1, 0, 0, 0, 0.99318695, 0.116532065, 0, -0.116532065, 0.99318695, 0, -1.1920929e-07, 6.644559)
-cull_mask = 1048574
+transform = Transform3D(1, 0, 0, 0, 0.9999544, -0.009546809, 0, 0.009546809, 0.9999544, -3.5527137e-15, 0.0032334896, 6.305862)
