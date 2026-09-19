@@ -145,13 +145,26 @@ func generate_grass() -> void:
 	grass_multimesh_instance.multimesh = new_mm
 
 func update_collision(array_mesh: ArrayMesh) -> void:
-	var static_body: StaticBody3D = get_node_or_null("TerrainStaticBody")
-	if not static_body:
-		static_body = StaticBody3D.new()
-		static_body.name = "TerrainStaticBody"
-		add_child(static_body)
+	var nav_region: NavigationRegion3D = get_node_or_null("NAVMESH")
+	if not nav_region:
+		nav_region = NavigationRegion3D.new()
+		nav_region.name = "NAVMESH"
+		add_child(nav_region)
 		if Engine.is_editor_hint() and get_tree():
-			static_body.owner = get_tree().edited_scene_root
+			nav_region.owner = get_tree().edited_scene_root
+
+	var static_body: StaticBody3D = nav_region.get_node_or_null("TerrainStaticBody")
+	if not static_body:
+		var old_body := get_node_or_null("TerrainStaticBody") as StaticBody3D
+		if old_body:
+			old_body.reparent(nav_region)
+			static_body = old_body
+		else:
+			static_body = StaticBody3D.new()
+			static_body.name = "TerrainStaticBody"
+			nav_region.add_child(static_body)
+			if Engine.is_editor_hint() and get_tree():
+				static_body.owner = get_tree().edited_scene_root
 
 	var collision_shape: CollisionShape3D = static_body.get_node_or_null("TerrainCollisionShape")
 	if not collision_shape:
@@ -241,7 +254,6 @@ func spawn_pois() -> void:
 
 		var normal := get_normal(random_x, random_z)
 		if normal.length_squared() > 0.001 and not normal.is_equal_approx(Vector3.UP):
-			var right := Vector3.RIGHT if abs(normal.dot(Vector3.RIGHT)) < 0.9 else Vector3.FORWARD
 			var forward := norm_cross_helper(normal)
 			var up_right := forward.cross(normal).normalized()
 			poi.transform.basis = Basis(up_right, normal, forward)
@@ -253,16 +265,15 @@ func norm_cross_helper(normal: Vector3) -> Vector3:
 func bake_navigation_mesh() -> void:
 	var nav_region: NavigationRegion3D = get_node_or_null("NAVMESH")
 	if not nav_region:
-		nav_region = NavigationRegion3D.new()
-		nav_region.name = "NAVMESH"
-		add_child(nav_region)
-		if Engine.is_editor_hint() and get_tree():
-			nav_region.owner = get_tree().edited_scene_root
+		return
 
-	if not nav_region.navigation_mesh:
-		var nav_mesh := NavigationMesh.new()
-		nav_mesh.geometry_parsed_geometry_type = NavigationMesh.PARSED_GEOMETRY_STATIC_COLLIDERS
-		nav_mesh.agent_max_slope = 90.0
+	var nav_mesh := nav_region.navigation_mesh
+	if not nav_mesh:
+		nav_mesh = NavigationMesh.new()
 		nav_region.navigation_mesh = nav_mesh
+
+	nav_mesh.geometry_parsed_geometry_type = NavigationMesh.PARSED_GEOMETRY_STATIC_COLLIDERS
+	nav_mesh.geometry_source_geometry_mode = 0
+	nav_mesh.agent_max_slope = 90.0
 
 	nav_region.bake_navigation_mesh()
