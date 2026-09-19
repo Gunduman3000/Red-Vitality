@@ -244,3 +244,4 @@ func spawn_pois() -> void:
 			var forward := normal.cross(right).normalized()
 			var up_right := forward.cross(normal).normalized()
 			poi.transform.basis = Basis(up_right, normal, forward)
+		print("sagil highkey gay (happy)")
