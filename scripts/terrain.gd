@@ -49,6 +49,9 @@ func get_normal(x: float, z: float) -> Vector3:
 	return normal.normalized()
 
 func update_mesh() -> void:
+	if not is_inside_tree():
+		return
+
 	var plane := PlaneMesh.new()
 	plane.subdivide_depth = res
 	plane.subdivide_width = res
@@ -82,18 +85,23 @@ func update_mesh() -> void:
 	generate_grass() 
 
 func generate_grass() -> void:
-	if not grass_multimesh_instance or not grass_multimesh_instance.multimesh:
+	if not grass_multimesh_instance:
 		return
 		
-	var mm: MultiMesh = grass_multimesh_instance.multimesh
-	mm.transform_format = MultiMesh.TRANSFORM_3D
+	var base_mesh: Mesh = null
+	var count: int = 65536 
 	
-	var count: int = mm.instance_count
-	if count <= 0:
-		return
+	if grass_multimesh_instance.multimesh:
+		base_mesh = grass_multimesh_instance.multimesh.mesh
+		if grass_multimesh_instance.multimesh.instance_count > 0:
+			count = grass_multimesh_instance.multimesh.instance_count
+
+	var new_mm := MultiMesh.new()
+	new_mm.transform_format = MultiMesh.TRANSFORM_3D
+	new_mm.instance_count = count
+	new_mm.mesh = base_mesh
 
 	var half_size := size / 2.0
-	
 	
 	var write_buffer := PackedFloat32Array()
 	write_buffer.resize(count * 12)
@@ -112,12 +120,7 @@ func generate_grass() -> void:
 		var up_right := forward.cross(norm).normalized()
 		
 		xform.basis = Basis(up_right, norm, forward)
-		
-		xform.basis = xform.basis.rotated(norm, randf_range(0.0, TAU))
-		
-		var scale_factor := randf_range(0.75, 1.35)
-		xform.basis = xform.basis.scaled(Vector3(scale_factor, scale_factor, scale_factor))
-		
+		xform.basis = xform.basis.scaled(Vector3(2.5, 2.5, 2.5))
 		xform.origin = Vector3(rx, ry, rz)
 		
 		write_buffer[buffer_idx] = xform.basis.x.x
@@ -137,7 +140,8 @@ func generate_grass() -> void:
 		
 		buffer_idx += 12
 		
-	mm.buffer = write_buffer
+	new_mm.buffer = write_buffer
+	grass_multimesh_instance.multimesh = new_mm
 
 func update_collision(array_mesh: ArrayMesh) -> void:
 	var static_body: StaticBody3D = get_node_or_null("TerrainStaticBody")
@@ -167,8 +171,11 @@ func spawn_pois() -> void:
 		if Engine.is_editor_hint() and get_tree():
 			pois_node.owner = get_tree().edited_scene_root
 
-	for child in pois_node.get_children():
-		child.free()
+	var current_children := pois_node.get_children()
+	for child in current_children:
+		if child.is_inside_tree():
+			pois_node.remove_child(child)
+		child.queue_free()
 
 	if poi_asset_paths.is_empty():
 		return
@@ -176,6 +183,8 @@ func spawn_pois() -> void:
 	var half_size := size / 2.0
 	var rng := RandomNumberGenerator.new()
 	rng.randomize()
+
+	var placed_positions: Array[Vector3] = []
 
 	for path in poi_asset_paths:
 		if path.is_empty():
@@ -198,13 +207,13 @@ func spawn_pois() -> void:
 			random_x = rng.randf_range(-half_size + 50.0, half_size - 50.0)
 			random_z = rng.randf_range(-half_size + 50.0, half_size - 50.0)
 			
-			if pois_node.get_child_count() == 0:
+			if placed_positions.is_empty():
 				valid = true
 				break
 			else:
 				var far_enough := true
-				for _poi in pois_node.get_children():
-					if Vector2(random_x, random_z).distance_to(Vector2(_poi.position.x, _poi.position.z)) < MIN_DISTANCE:
+				for pos in placed_positions:
+					if Vector2(random_x, random_z).distance_to(Vector2(pos.x, pos.z)) < MIN_DISTANCE:
 						far_enough = false
 						break
 
@@ -219,11 +228,15 @@ func spawn_pois() -> void:
 		if not poi:
 			continue
 
+		var y := get_height(random_x, random_z)
+		var spawn_pos := Vector3(random_x, y, random_z)
+		placed_positions.append(spawn_pos)
+
 		poi.add_to_group("generated_poi")
 		pois_node.add_child(poi)
-
-		var y := get_height(random_x, random_z)
-		poi.position = Vector3(random_x, y, random_z)
+		if Engine.is_editor_hint() and get_tree():
+			poi.owner = get_tree().edited_scene_root
+		poi.position = spawn_pos
 
 		var normal := get_normal(random_x, random_z)
 		if normal.length_squared() > 0.001 and not normal.is_equal_approx(Vector3.UP):
