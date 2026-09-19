@@ -15,7 +15,6 @@ func _physics_process(delta: float) -> void:
 	var new_velocity = (target_pos - current_pos).normalized() * SPEED
 	velocity = velocity.move_toward(new_velocity,0.25)
 	move_and_slide()
-	print(target_pos - current_pos)
 func target_position(target_p):
 	navigation_agent_3d.target_position = target_p
 
