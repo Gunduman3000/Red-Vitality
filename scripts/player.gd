@@ -1,4 +1,6 @@
 extends CharacterBody3D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var attack_cool_down: Timer = $"attack cool down"
 
 @export_group("Movement")
 @export var move_speed:= 70.0
@@ -12,7 +14,7 @@ var hp:= maxhp
 var target = []
 var camera_input_direction:= Vector2.ZERO
 var last_movement_direction:= Vector3.BACK
-
+var onCooldown = false
 
 var current_turn_speed:= 0.0
 
@@ -56,7 +58,12 @@ func _physics_process(delta: float) -> void:
 	velocity.z = new_horizontal_velocity.z
 
 	move_and_slide()
-
+	attack()
+func attack():
+	if Input.is_action_just_pressed("left_click") and onCooldown == false:
+		animation_player.play("attack_swing")
+		onCooldown = true
+		attack_cool_down.start()
 func player():
 	pass
 func deal_dmg():
@@ -67,3 +74,7 @@ func _on_attack_area_body_entered(body: Node3D) -> void:
 func _on_attack_area_body_exited(body: Node3D) -> void:
 	if body.has_method("enemy"):
 		target.erase(body)
+
+
+func _on_attack_cool_down_timeout() -> void:
+	onCooldown = false
