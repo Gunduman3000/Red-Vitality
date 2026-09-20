@@ -67,14 +67,14 @@ func attack():
 func player():
 	pass
 func deal_dmg():
-	target.hp -= damage
+	for enemies in target:
+		enemies.hp -= damage
 func _on_attack_area_body_entered(body: Node3D) -> void:
 	if body.has_method("enemy"):
 		target.appendd(body)
 func _on_attack_area_body_exited(body: Node3D) -> void:
 	if body.has_method("enemy"):
 		target.erase(body)
-
 
 func _on_attack_cool_down_timeout() -> void:
 	onCooldown = false

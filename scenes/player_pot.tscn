@@ -409,6 +409,20 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0, -7.105428e-15, -1.1459199), Vector3(0.2075123, 0.15518773, -1.1136992), Vector3(0.27922782, 0.28489184, -1.084025), Vector3(0.27020127, -0.7366304, -1.0940146), Vector3(0, -7.105428e-15, -1.1459199)]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.53333336),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"deal_dmg"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7pjpw"]
 _data = {
@@ -458,7 +472,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4061172, 0.20592779, 0.0641
 shape = SubResource("SphereShape3D_5d5ig")
 
 [node name="WEAPON" type="StaticBody3D" parent="Player" unique_id=1319337561]
-transform = Transform3D(0.41220817, 0.9110896, -7.1054257e-15, -0.91108966, 0.41220814, 0, 2.9289156e-15, 6.473682e-15, 0.99999964, 0.78309643, 0.9110098, -1.2424024)
+transform = Transform3D(0.41220814, 0.91108954, -7.1054257e-15, -0.9110896, 0.4122081, 0, 2.9289154e-15, 6.4736814e-15, 0.99999964, 0.78309643, 0.9110098, -1.2424024)
 collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player/WEAPON" unique_id=678758027]
@@ -482,6 +496,7 @@ offset_top = 19.0
 offset_right = 307.0
 offset_bottom = 217.0
 scale = Vector2(0.843125, 0.060624957)
+value = 100.0
 texture_under = ExtResource("2_hu4lp")
 texture_progress = ExtResource("3_4rvvf")
 

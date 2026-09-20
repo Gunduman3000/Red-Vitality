@@ -195,10 +195,83 @@ data = PackedVector3Array(0.054270696, 0.6050048, -0.6097992, 8.99471e-08, 0.506
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_5d5ig"]
 radius = 2.7
 
+[sub_resource type="Animation" id="Animation_u7gwu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mob/Tomato:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mob/Tomato:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dlckl"]
+resource_name = "bump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mob/Tomato:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.22, 0.5, 0.71, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.24496078, 0, 0), Vector3(1.550824, 0, 0), Vector3(1.567111, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mob/Tomato:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.22, 0.5, 0.71, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.91805965), Vector3(0, 0, -1.1178432), Vector3(0, 0, -1.5378045), Vector3(0, 0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Mob")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u7gwu"]
+_data = {
+&"RESET": SubResource("Animation_u7gwu"),
+&"bump": SubResource("Animation_dlckl")
+}
+
 [node name="Smul tomato" type="Node3D" unique_id=436709453]
 
 [node name="Mob" type="CharacterBody3D" parent="." unique_id=421697193]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0278708, 0, 1.5205156)
 floor_constant_speed = true
 script = ExtResource("1_v1tca")
 
@@ -206,6 +279,7 @@ script = ExtResource("1_v1tca")
 shape = SubResource("SphereShape3D_5d5ig")
 
 [node name="Tomato" type="MeshInstance3D" parent="Mob" unique_id=398416393]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_2ephu")
 
 [node name="Tomato" type="StaticBody3D" parent="Mob/Tomato" unique_id=1863756262]
@@ -221,6 +295,10 @@ debug_enabled = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mob/Area3D" unique_id=1123823424]
 shape = SubResource("CylinderShape3D_5d5ig")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Mob" unique_id=1769072875]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_u7gwu")
 
 [connection signal="body_entered" from="Mob/Area3D" to="Mob" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Mob/Area3D" to="Mob" method="_on_area_3d_body_exited"]

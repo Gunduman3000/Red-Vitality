@@ -1,13 +1,13 @@
 extends CharacterBody3D
 class_name Mob
 
-enum States {attack, chase, die}
-
+enum States {attacks, chase, die}
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 
 @export var hp := 10
 @export var SPEED := 5.0 
-
+@export var damage := 10
 var state = States.chase
 var target = null
 
@@ -26,12 +26,15 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	if state == States.attack:
+	if state == States.attacks:
+		look_at(Vector3(target.global_position.x,target.global_position.y,target.global_position.z), Vector3.UP, true)
 		velocity.x = 0.0
 		velocity.z = 0.0
-		print("attack")
+		animation_player.play("bump")
+		
 		
 	elif state == States.chase:
+		look_at(Vector3(target.global_position.x,target.global_position.y,target.global_position.z), Vector3.UP, true)
 		if target != null:
 			navigation_agent_3d.target_position = target.global_position
 			
@@ -53,11 +56,12 @@ func _physics_process(delta: float) -> void:
 			killed.emit()
 			queue_free()
 	move_and_slide()
-
+func attack():
+	target.hp -= damage
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.has_method("player"):
-		state = States.attack
+		state = States.attacks
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body.has_method("player"):
