@@ -94,7 +94,7 @@ jump_impulse = 75.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="WEAPON" parent="Player_Pot/Player" index="4" unique_id=1319337561]
-transform = Transform3D(0.4122081, 0.9110895, -7.1054257e-15, -0.91108954, 0.4122081, 0, 2.9289152e-15, 6.473681e-15, 0.99999964, 0.78309643, 0.9110098, -1.2424024)
+transform = Transform3D(0.4122081, 0.9110894, -7.1054257e-15, -0.9110895, 0.41220808, 0, 2.9289152e-15, 6.4736805e-15, 0.99999964, 0.78309643, 0.9110098, -1.2424024)
 
 [node name="Smul tomato" parent="." unique_id=436709453 instance=ExtResource("4_jyhfs")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -205.79572, 22.901606, 138.49031)

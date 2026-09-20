@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://kbo3hpte3nxk"]
+
+[ext_resource type="Script" uid="uid://8s15w81yonqf" path="res://scripts/respawner.gd" id="1_lpfnd"]
+[ext_resource type="PackedScene" uid="uid://dn7bnx7fjsspf" path="res://scenes/tall_tomato.tscn" id="2_lpfnd"]
+[ext_resource type="PackedScene" uid="uid://b86sbmda2d86c" path="res://scenes/smul_tomato.tscn" id="3_38n6f"]
+
+[node name="Respawner" type="Node3D" unique_id=1827214280]
+script = ExtResource("1_lpfnd")
+enemy1 = ExtResource("2_lpfnd")
+enemy2 = ExtResource("3_38n6f")
+
+[node name="Timer" type="Timer" parent="." unique_id=606496462]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
