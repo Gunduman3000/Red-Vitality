@@ -8,18 +8,15 @@ extends CharacterBody3D
 @export var jump_impulse:= 35.0
 @export var maxhp:= 100
 var hp:= maxhp
-<<<<<<< HEAD
 @export var damage := 10
 var target = []
 var camera_input_direction:= Vector2.ZERO
 var last_movement_direction:= Vector3.BACK
-@onready var hpbar: TextureProgressBar = $"../HUD/HPBAR"
-=======
+
 
 var current_turn_speed:= 0.0
 
 @onready var hpbar: TextureProgressBar = $"../HUD/HUD/HPBAR" if has_node("../HUD/HPBAR") else null
->>>>>>> db974aba7a67df2f28b6e3323cb8961b819bf6f4
 @onready var camera_pivot: Node3D = %CameraPivot
 @onready var camera: Camera3D = $CameraPivot/SpringArm3D/Camera
 

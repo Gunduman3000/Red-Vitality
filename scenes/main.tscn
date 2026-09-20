@@ -78,11 +78,7 @@ transform = Transform3D(0.9783027, 0.20718054, 0, -0.2059893, 0.9726776, -0.1070
 shape = SubResource("ConcavePolygonShape3D_o6xl0")
 
 [node name="Player_Pot" parent="." unique_id=1142346797 instance=ExtResource("2_sugp2")]
-<<<<<<< HEAD
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 161.46936, 0.4835167, -298.9057)
-=======
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -193.76425, 33.014816, -146.60172)
->>>>>>> db974aba7a67df2f28b6e3323cb8961b819bf6f4
 
 [node name="Player" parent="Player_Pot" index="0" unique_id=1914888182 groups=["player"]]
 axis_lock_angular_x = true
@@ -101,11 +97,7 @@ transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Smul tomato" parent="." unique_id=436709453 instance=ExtResource("4_jyhfs")]
-<<<<<<< HEAD
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 352.09528, -5.857895, -233.68658)
-=======
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 253.59314, 39.494965, -81.3826)
->>>>>>> db974aba7a67df2f28b6e3323cb8961b819bf6f4
 
 [node name="Mob" parent="Smul tomato" index="0" unique_id=421697193]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
