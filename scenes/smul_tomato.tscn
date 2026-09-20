@@ -212,6 +212,7 @@ mesh = SubResource("ArrayMesh_2ephu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mob/Tomato/Tomato" unique_id=1281418066]
 shape = SubResource("ConcavePolygonShape3D_wpe7e")
+disabled = true
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="Mob" unique_id=1773208988]
 debug_enabled = true
