@@ -2,14 +2,19 @@
 
 [ext_resource type="PackedScene" uid="uid://bsbiv8ka3swmm" path="res://scenes/terrain_gen.tscn" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://cvrn877on6er7" path="res://scenes/player_pot.tscn" id="2_sugp2"]
-[ext_resource type="PackedScene" uid="uid://d2hfykubccuvd" path="res://scenes/mob.tscn" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://b86sbmda2d86c" path="res://scenes/smul_tomato.tscn" id="4_jyhfs"]
 
 [node name="Main" type="Node3D" unique_id=380376553]
 
 [node name="Terrain gen" parent="." unique_id=1617933739 instance=ExtResource("1_0wfyh")]
 
 [node name="Player_Pot" parent="." unique_id=1142346797 instance=ExtResource("2_sugp2")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -26.273478, 13.759629, 17.202116)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -86.050064, 22.974842, 121.81656)
 
-[node name="Mob" parent="." unique_id=421697193 instance=ExtResource("3_sugp2")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 10.129386, 13.668256, -30.13825)
+[node name="Player" parent="Player_Pot" index="0" unique_id=1914888182 groups=["player"]]
+
+[node name="Smul tomato" parent="." unique_id=436709453 instance=ExtResource("4_jyhfs")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 75.0709, 18.846996, 102.645386)
+
+[editable path="Player_Pot"]
+[editable path="Smul tomato"]

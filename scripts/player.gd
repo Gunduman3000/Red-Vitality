@@ -55,4 +55,5 @@ func _physics_process(delta: float) -> void:
 		last_movement_direction = move_direction
 	var _target_angle := atan2(last_movement_direction.x,last_movement_direction.z)
 	rotation.y = lerp_angle(rotation.y, _target_angle, rotation_speed * delta)
-	
+func player():
+	pass
