@@ -94,7 +94,7 @@ jump_impulse = 75.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Smul tomato" parent="." unique_id=436709453 instance=ExtResource("4_jyhfs")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -205.79572, 39.494965, -56.078712)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -205.79572, 22.901606, 138.49031)
 
 [node name="Mob" parent="Smul tomato" index="0" unique_id=421697193]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)

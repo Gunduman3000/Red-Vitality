@@ -7,6 +7,7 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_5d5ig"]
 
 [node name="Mob" type="CharacterBody3D" unique_id=421697193 groups=["enemies"]]
+collision_layer = 3
 floor_constant_speed = true
 script = ExtResource("1_4are2")
 
