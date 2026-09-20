@@ -55,25 +55,20 @@ multimesh = SubResource("MultiMesh_tbgi4")
 [node name="MeshInstance3D" parent="Terrain gen" index="4" unique_id=2012248439]
 mesh = SubResource("ArrayMesh_tefeu")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Terrain gen/MeshInstance3D/POIs" parent_id_path=PackedInt32Array(1617933739, 716139401) index="0" unique_id=1418127807 instance=ExtResource("2_jyhfs")]
+[node name="CSGBox3D2" parent="Terrain gen/MeshInstance3D/POIs" parent_id_path=PackedInt32Array(1617933739, 716139401) index="0" unique_id=1418127807 instance=ExtResource("2_jyhfs")]
 transform = Transform3D(0.98707426, -0.16026387, 0, 0.15916105, 0.9802817, 0.11711303, 0.018768989, 0.115599245, -0.99311864, -190.55855, -18.298805, -190.02399)
-size = Vector3(25, 25, 25)
 
-[node name="@CSGBox3D@49837" type="CSGBox3D" parent="Terrain gen/MeshInstance3D/POIs" parent_id_path=PackedInt32Array(1617933739, 716139401) index="1" unique_id=198075406 instance=ExtResource("2_jyhfs")]
+[node name="@CSGBox3D@49837" parent="Terrain gen/MeshInstance3D/POIs" parent_id_path=PackedInt32Array(1617933739, 716139401) index="1" unique_id=198075406 instance=ExtResource("2_jyhfs")]
 transform = Transform3D(0.9998848, 0.015182487, 0, -0.015022021, 0.9893167, 0.14500603, -0.0022015523, 0.14498931, -0.9894308, 106.028625, 25.701574, 155.05069)
-size = Vector3(25, 25, 25)
 
-[node name="@CSGBox3D@49838" type="CSGBox3D" parent="Terrain gen/MeshInstance3D/POIs" parent_id_path=PackedInt32Array(1617933739, 716139401) index="2" unique_id=2077347417 instance=ExtResource("2_jyhfs")]
+[node name="@CSGBox3D@49838" parent="Terrain gen/MeshInstance3D/POIs" parent_id_path=PackedInt32Array(1617933739, 716139401) index="2" unique_id=2077347417 instance=ExtResource("2_jyhfs")]
 transform = Transform3D(0.98087645, -0.1946315, 0, 0.19342129, 0.97477734, 0.111343205, 0.021670895, 0.10921392, -0.99378204, -93.7496, 13.776099, 103.05414)
-size = Vector3(25, 25, 25)
 
-[node name="@CSGBox3D@49839" type="CSGBox3D" parent="Terrain gen/MeshInstance3D/POIs" parent_id_path=PackedInt32Array(1617933739, 716139401) index="3" unique_id=661681125 instance=ExtResource("2_jyhfs")]
+[node name="@CSGBox3D@49839" parent="Terrain gen/MeshInstance3D/POIs" parent_id_path=PackedInt32Array(1617933739, 716139401) index="3" unique_id=661681125 instance=ExtResource("2_jyhfs")]
 transform = Transform3D(0.9925439, 0.12188795, 0, -0.12183629, 0.99212307, 0.029114291, -0.0035486815, 0.02889721, -0.9995761, 313.2354, -8.990461, -35.999542)
-size = Vector3(25, 25, 25)
 
-[node name="@CSGBox3D@49840" type="CSGBox3D" parent="Terrain gen/MeshInstance3D/POIs" parent_id_path=PackedInt32Array(1617933739, 716139401) index="4" unique_id=727852136 instance=ExtResource("2_jyhfs")]
+[node name="@CSGBox3D@49840" parent="Terrain gen/MeshInstance3D/POIs" parent_id_path=PackedInt32Array(1617933739, 716139401) index="4" unique_id=727852136 instance=ExtResource("2_jyhfs")]
 transform = Transform3D(0.9783027, 0.20718054, 0, -0.2059893, 0.9726776, -0.10708211, 0.022185333, -0.10475872, -0.9942502, 107.62793, -20.030806, -252.82915)
-size = Vector3(25, 25, 25)
 
 [node name="TerrainCollisionShape" parent="Terrain gen/MeshInstance3D/NAVMESH/TerrainStaticBody" parent_id_path=PackedInt32Array(1617933739, 41856970) index="0" unique_id=338190625]
 shape = SubResource("ConcavePolygonShape3D_o6xl0")

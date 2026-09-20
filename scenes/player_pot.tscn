@@ -11,6 +11,8 @@ height = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0ywxr"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_5d5ig"]
+
 [node name="Player_Pot" type="Node3D" unique_id=1142346797]
 
 [node name="Player" type="CharacterBody3D" parent="." unique_id=1914888182]
@@ -37,6 +39,12 @@ spring_length = 8.0
 [node name="Camera" type="Camera3D" parent="Player/CameraPivot/SpringArm3D" unique_id=1957118627]
 transform = Transform3D(1, 0, 0, 0, 0.9999544, -0.009546809, 0, 0.009546809, 0.9999544, -3.5527137e-15, 0.0032334896, 6.305862)
 
+[node name="attack_area" type="Area3D" parent="Player" unique_id=813208259]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/attack_area" unique_id=1395573666]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49267197, 1.0703605)
+shape = SubResource("SphereShape3D_5d5ig")
+
 [node name="HUD" type="CanvasLayer" parent="." unique_id=2103313148]
 
 [node name="HPBAR" type="TextureProgressBar" parent="HUD" unique_id=1616554444]
@@ -47,3 +55,6 @@ offset_bottom = 217.0
 scale = Vector2(0.843125, 0.060624957)
 texture_under = ExtResource("2_hu4lp")
 texture_progress = ExtResource("3_4rvvf")
+
+[connection signal="body_entered" from="Player/attack_area" to="Player" method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="Player/attack_area" to="Player" method="_on_attack_area_body_exited"]

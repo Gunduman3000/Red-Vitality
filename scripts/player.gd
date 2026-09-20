@@ -10,7 +10,8 @@ extends CharacterBody3D
 @export var jump_impulse:= 35.0
 @export var maxhp:= 100
 var hp:= maxhp
-
+@export var damage := 10
+var target = []
 var camera_input_direction:= Vector2.ZERO
 var last_movement_direction:= Vector3.BACK
 @onready var hpbar: TextureProgressBar = $"../HUD/HPBAR"
@@ -57,3 +58,11 @@ func _physics_process(delta: float) -> void:
 	rotation.y = lerp_angle(rotation.y, _target_angle, rotation_speed * delta)
 func player():
 	pass
+func deal_dmg():
+	target.hp -= damage
+func _on_attack_area_body_entered(body: Node3D) -> void:
+	if body.has_method("enemy"):
+		target.appendd(body)
+func _on_attack_area_body_exited(body: Node3D) -> void:
+	if body.has_method("enemy"):
+		target.erase(body)
