@@ -1,0 +1,148 @@
+[gd_scene format=3 uid="uid://d21wniaicy55g"]
+
+[ext_resource type="Script" uid="uid://f6ogcey6lmij" path="res://scenes/main_menu.gd" id="1_bqqt6"]
+[ext_resource type="PackedScene" uid="uid://bsbiv8ka3swmm" path="res://scenes/terrain_gen.tscn" id="1_l6cm7"]
+[ext_resource type="Texture2D" uid="uid://bstna62ymyj6r" path="res://Assets/Main_TItle.png" id="2_ekxnf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y0i8d"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.20392157)
+border_width_left = 4
+border_width_top = 2
+border_width_right = 4
+border_width_bottom = 2
+border_color = Color(0.8901416, 0.4263066, 0.4192135, 1)
+border_blend = true
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7n0gs"]
+bg_color = Color(1, 0.6, 0.6, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sd3pc"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yryq3"]
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m5nax"]
+bg_color = Color(0.42411035, 0.6720754, 0.41831586, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg76c"]
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77ke0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3md3m"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+corner_detail = 20
+
+[node name="MAIN_MENU" type="Node3D" unique_id=227551149]
+script = ExtResource("1_bqqt6")
+TARGET_SCENE_PATH = "uid://cy24lc6ux6tv4"
+
+[node name="Terrain gen" parent="." unique_id=1617933739 instance=ExtResource("1_l6cm7")]
+
+[node name="CSGBox3D" parent="Terrain gen/MeshInstance3D/POIs" parent_id_path=PackedInt32Array(1617933739, 716139401) index="0" unique_id=1418127807]
+visible = false
+
+[node name="@CSGBox3D@55017" parent="Terrain gen/MeshInstance3D/POIs" parent_id_path=PackedInt32Array(1617933739, 716139401) index="1" unique_id=1661757324]
+visible = false
+
+[node name="@CSGBox3D@55018" parent="Terrain gen/MeshInstance3D/POIs" parent_id_path=PackedInt32Array(1617933739, 716139401) index="2" unique_id=366096175]
+visible = false
+
+[node name="@CSGBox3D@55019" parent="Terrain gen/MeshInstance3D/POIs" parent_id_path=PackedInt32Array(1617933739, 716139401) index="3" unique_id=1544531948]
+visible = false
+
+[node name="@CSGBox3D@55020" parent="Terrain gen/MeshInstance3D/POIs" parent_id_path=PackedInt32Array(1617933739, 716139401) index="4" unique_id=947215287]
+visible = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1364478006]
+
+[node name="MainTItle" type="Sprite2D" parent="CanvasLayer" unique_id=1689181540]
+position = Vector2(550, 91)
+scale = Vector2(0.5345821, 0.53458214)
+texture = ExtResource("2_ekxnf")
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1233267112]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1150.0
+offset_bottom = 650.0
+
+[node name="Play" type="Button" parent="CanvasLayer/Control" unique_id=318991368]
+layout_mode = 0
+offset_left = 463.0
+offset_top = 294.0
+offset_right = 645.0
+offset_bottom = 344.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_y0i8d")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_7n0gs")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_sd3pc")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_yryq3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_m5nax")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_bg76c")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_77ke0")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_3md3m")
+text = "PLAY"
+
+[node name="Quit" type="Button" parent="CanvasLayer/Control" unique_id=114301267]
+layout_mode = 0
+offset_left = 469.0
+offset_top = 463.0
+offset_right = 651.0
+offset_bottom = 513.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_y0i8d")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_7n0gs")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_sd3pc")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_yryq3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_m5nax")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_bg76c")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_77ke0")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_3md3m")
+text = "QUIT
+"
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=164472546]
+transform = Transform3D(-0.9978589, 0.024500733, 0.0606414, 0, 0.92718375, -0.37460682, -0.065403864, -0.37380475, -0.92519855, -65.33365, 15.655463, 81.13855)
+current = true
+
+[editable path="Terrain gen"]
+[editable path="Terrain gen/grass"]
