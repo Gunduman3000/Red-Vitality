@@ -274,6 +274,7 @@ func bake_navigation_mesh() -> void:
 
 	nav_mesh.geometry_parsed_geometry_type = NavigationMesh.PARSED_GEOMETRY_STATIC_COLLIDERS
 	nav_mesh.geometry_source_geometry_mode = 0
+	nav_mesh.agent_max_climb = 500
 	nav_mesh.agent_max_slope = 90.0
 
 	nav_region.bake_navigation_mesh()
