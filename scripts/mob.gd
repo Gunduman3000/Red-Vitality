@@ -27,7 +27,6 @@ func _physics_process(delta: float) -> void:
 				var direction = global_position.direction_to(next_pos)
 				direction.y = 0.0
 				direction = direction.normalized()
-				print(direction)
 				velocity.x = lerp(velocity.x, direction.x * SPEED, acceleration * delta)
 				velocity.z = lerp(velocity.z, direction.z * SPEED, acceleration * delta)
 	move_and_slide()
