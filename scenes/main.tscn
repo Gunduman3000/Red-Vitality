@@ -78,25 +78,49 @@ transform = Transform3D(0.9783027, 0.20718054, 0, -0.2059893, 0.9726776, -0.1070
 shape = SubResource("ConcavePolygonShape3D_o6xl0")
 
 [node name="Player_Pot" parent="." unique_id=1142346797 instance=ExtResource("2_sugp2")]
+<<<<<<< HEAD
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 161.46936, 0.4835167, -298.9057)
+=======
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -193.76425, 33.014816, -146.60172)
+>>>>>>> db974aba7a67df2f28b6e3323cb8961b819bf6f4
 
 [node name="Player" parent="Player_Pot" index="0" unique_id=1914888182 groups=["player"]]
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+slide_on_ceiling = false
+floor_max_angle = 3.1415927
+floor_snap_length = 1.0
+rotation_speed = 1.5
+rotation_acceleration = 15.0
+jump_impulse = 75.0
 
 [node name="MeshInstance3D" parent="Player_Pot/Player" index="0" unique_id=770776944]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0)
 
+[node name="CollisionShape3D" parent="Player_Pot/Player" index="1" unique_id=244417997]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
 [node name="Smul tomato" parent="." unique_id=436709453 instance=ExtResource("4_jyhfs")]
+<<<<<<< HEAD
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 352.09528, -5.857895, -233.68658)
+=======
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 253.59314, 39.494965, -81.3826)
+>>>>>>> db974aba7a67df2f28b6e3323cb8961b819bf6f4
 
 [node name="Mob" parent="Smul tomato" index="0" unique_id=421697193]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-SPEED = 150.0
+slide_on_ceiling = false
+floor_max_angle = 3.1415927
+floor_snap_length = 1.0
+SPEED = 50.0
 
 [node name="NavigationAgent3D" parent="Smul tomato/Mob" index="2" unique_id=1773208988]
+path_desired_distance = 7.0
 navigation_layers = 65535
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=964791101]
 navigation_mesh = SubResource("NavigationMesh_4lmw5")
+travel_cost = 0.0
 
 [node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D" unique_id=2079166495]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 680.97705, 12.5421295, -114.889435)

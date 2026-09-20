@@ -39,12 +39,10 @@ func _physics_process(delta: float) -> void:
 				velocity.x = 0.0
 				velocity.z = 0.0
 			else:
-				var next_pos = navigation_agent_3d.get_next_path_position()
+				var next_pos = navigation_agent_3d.get_next_path_position() 
 				var direction = global_position.direction_to(next_pos)
-				print(global_position)
+				print(next_pos)
 				direction.y = 0.0
-				direction = direction.normalized()
-				
 				velocity.x = direction.x * SPEED
 				velocity.z = direction.z * SPEED
 		else:
