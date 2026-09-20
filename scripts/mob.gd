@@ -51,7 +51,7 @@ func _physics_process(delta: float) -> void:
 			print('target null')
 	elif state == States.die:
 			killed.emit()
-	queue_free()
+			queue_free()
 	move_and_slide()
 
 

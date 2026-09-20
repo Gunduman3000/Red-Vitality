@@ -54,6 +54,7 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 [node name="Terrain gen" parent="." unique_id=1617933739 instance=ExtResource("1_0wfyh")]
 
 [node name="MultiMeshInstance3D" parent="Terrain gen" index="2" unique_id=676555425]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16.845337, 0)
 multimesh = SubResource("MultiMesh_tbgi4")
 
 [node name="MeshInstance3D" parent="Terrain gen" index="4" unique_id=2012248439]
@@ -97,17 +98,18 @@ transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Smul tomato" parent="." unique_id=436709453 instance=ExtResource("4_jyhfs")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 253.59314, 39.494965, -81.3826)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -205.79572, 39.494965, -56.078712)
 
 [node name="Mob" parent="Smul tomato" index="0" unique_id=421697193]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-slide_on_ceiling = false
-floor_max_angle = 3.1415927
-floor_snap_length = 1.0
 SPEED = 50.0
 
+[node name="CollisionShape3D" parent="Smul tomato/Mob/Tomato/Tomato" parent_id_path=PackedInt32Array(436709453, 1863756262) index="0" unique_id=1281418066]
+disabled = true
+
 [node name="NavigationAgent3D" parent="Smul tomato/Mob" index="2" unique_id=1773208988]
-path_desired_distance = 7.0
+path_desired_distance = 100.0
+target_desired_distance = 7.0
 navigation_layers = 65535
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=964791101]

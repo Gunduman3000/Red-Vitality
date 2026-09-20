@@ -20,8 +20,8 @@ func _ready() -> void:
 	label.visible = true 
 
 func _on_node_added(node: Node) -> void:
-	if node is mob:
-		node.die.connect(_on_enemy_killed)
+	if node is Mob:
+		node.killed.connect(_on_enemy_killed)
 
 func _on_enemy_killed() -> void:
 	tomatoes_killed += 1

@@ -129,6 +129,7 @@ mesh = SubResource("ArrayMesh_8yfxd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mob/Long_Tomato/Long_Tomato" unique_id=1345565574]
 shape = SubResource("ConcavePolygonShape3D_ftphm")
+disabled = true
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="Mob" unique_id=1773208988]
 debug_enabled = true
